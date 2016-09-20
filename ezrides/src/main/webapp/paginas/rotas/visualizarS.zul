@@ -1,0 +1,13 @@
+<?page title="Gerenciamento de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk xmlns:n="native">
+	<div self="@define(content)" onCreate='Clients.evalJavaScript("initializeGMaps()")'>
+		<include src="/paginas/template/topPages.zul" pageTitle="Visualizar Rota" backHref="/paginas/dashboard/"/>
+		<hbox width="100%" height="100%" pack="center" apply="${viewRouteComposer}">
+			<groupbox closable="false" sclass="frmGroupbox">
+				<caption sclass="myCaption"	label="Visualizar Rota" />
+				<include src="/paginas/rotas/compVisualizar.zul"/>
+			</groupbox>
+		</hbox>
+	</div>
+</zk>

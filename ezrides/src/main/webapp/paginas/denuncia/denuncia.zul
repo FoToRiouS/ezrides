@@ -1,0 +1,25 @@
+<window id="modalDenuncia" title="Denunciar"
+	border="normal" position="center, center"
+	action="show: slideIn; hide: slideOut" closable="true"
+	apply="${abuseComposer}">
+
+	<vbox>
+		<grid width="640px" sclass="nostyle">
+			<columns>
+				<column hflex="1"/>
+			</columns>
+			<rows>
+				<row>
+					<textbox id="fldBodyMessage" hflex="1" value="@{controller.entity.reason}" rows="10" maxlength="5000" placeholder="Motivo da denúncia..."/>
+				</row>
+			</rows>
+		</grid>
+						
+		<hbox width="100%" height="50px" align="center" pack="center">
+			<button zclass="btn btn-success" width="170px" label="Denunciar" onClick='controller.doAction("saveEntity")'/>
+			<separator width="30px"/>
+			<button zclass="btn btn-success" width="170px" label="Fechar" onClick='modalDenuncia.detach()'/>
+		</hbox>
+	</vbox>
+	
+</window>

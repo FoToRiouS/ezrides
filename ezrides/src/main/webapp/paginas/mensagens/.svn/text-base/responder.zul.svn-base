@@ -1,0 +1,36 @@
+<window id="modalResponder" title="Enviar Mensagem"
+	border="normal" position="center, center"
+	action="show: slideIn; hide: slideOut" closable="true"
+	apply="${replyMessagesComposer}">
+
+	<vbox>
+		<grid width="640px" sclass="nostyle">
+			<columns>
+				<column hflex="min"/>
+				<column hflex="1"/>
+			</columns>
+			<rows>
+				<row >
+					<label value="Destinatários:"/>
+					<chosenbox id="fldDestiny" model="@{controller.friends}" selectedObjects="@{controller.selectedFriends}" hflex="1" 
+							noResultsText='${c:getSystemProperties("destiny_noresult_message")}'
+							onSelect="controller.setSelectedFriends(event)" disabled="true"/>
+				</row>
+				<row >
+					<label value="Titulo:"/>
+					<textbox id="fldTitle" hflex="1" value="@{controller.entity.title}" maxlength="200" disabled="true"/>
+				</row>
+				<row spans="2">
+					<textbox id="fldBodyMessage" hflex="1" value="@{controller.entity.bodyMessage}" rows="10" maxlength="5000" placeholder="Mensagem..."/>
+				</row>
+			</rows>
+		</grid>
+						
+		<hbox width="100%" height="50px" align="center" pack="center">
+			<button zclass="btn btn-block btn-success" width="170px" label="Enviar" onClick='controller.doAction("sendMessages")'/>
+			<separator width="30px"/>
+			<button zclass="btn btn-block btn-success" width="170px" label="Fechar" onClick='modalResponder.detach()'/>
+		</hbox>
+	</vbox>
+	
+</window>

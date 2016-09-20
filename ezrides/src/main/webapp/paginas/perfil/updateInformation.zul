@@ -1,0 +1,97 @@
+<window id="modalInformation" title="Alterar Informações"
+	border="normal" position="center, center"
+	action="show: slideIn; hide: slideOut" closable="true"
+	apply="${modalWindowsProfileComposer}">
+
+	<vbox>
+		<groupbox>
+			<caption>Pessoais</caption>
+			<grid width="580px" sclass="nostyle">
+				<columns>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row spans="1,3">
+						<label value="Nome:"/>
+						<textbox id="fldNome" width="498px" value="@{controller.entity.name}" maxlength="200"/>
+					</row>
+					<row>
+						<label value="Sexo:"/>
+						<radiogroup id="fldSexo" selectedItem="@{controller.entity.sex, converter='br.ueg.ezrides.view.converter.SexoEnumRadiogroupConverter'}">
+							<radio label="Masculino" value="Masculino" radiogroup="fldSexo" />
+							<radio label="Feminino" value="Feminino" radiogroup="fldSexo" />
+						</radiogroup>
+						<label value="Data de Nascimento:"/>
+						<datebox id="fldDataNascimento" cols="23" format="medium" value="@{controller.entity.birthDate}"/>
+					</row>
+					<row>
+						<label value="Telefone:"/>
+						<textbox id="fldTelefone" width="177px" value="@{controller.entity.telefone}" maxlength="18"/>
+						<label value="Celular:"/>
+						<textbox id="fldCelular" width="177px" value="@{controller.entity.celular}" maxlength="18"/>
+					</row>
+					<row spans="2">
+						<checkbox id="fldPerfilPublico" label="Perfil Público" checked="@{controller.entity.perfilPublico}"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<caption>Endereço</caption>
+			<grid width="580px" sclass="nostyle">
+				<columns>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="País:"/>
+						<combobox id="fldPais" width="150px" model="@{controller.paises}" selectedItem="@{controller.pesqPais}">
+							<comboitem self="@{each=pais}" label="@{pais.nome}" />
+							<attribute name="onChange">
+		        				fldEstado.setRawValue(null);
+		        			</attribute>
+						</combobox>
+												
+						<label value="Estado:"/>
+						<combobox id="fldEstado" width="60px" model="@{controller.estados load-when='fldPais.onChange'}" selectedItem="@{controller.entity.estado}" >
+							<comboitem self="@{each=est}" label="@{est.sigla}" />
+						</combobox>
+						
+						<label value="Cidade:"/>
+						<textbox id="fldCidade" width="142px" value="@{controller.entity.cidade}" maxlength="50"/>
+					</row>
+					<row spans="1,5">
+						<label value="Endereço:"/>
+						<textbox id="fldEndereco" width="493px" value="@{controller.entity.endereco}" maxlength="500"/>
+					</row>
+					<row>
+						<label value="Bairro:"/>
+						<textbox id="fldBairro" width="140px" value="@{controller.entity.bairro}" maxlength="50"/>
+						<label value="Número:"/>
+						<textbox id="fldNumero" width="60px" value="@{controller.entity.numero}" maxlength="10"/>
+						<label value="CEP:"/>
+						<textbox id="fldCep" width="142px" value="@{controller.entity.cep}" maxlength="18"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<textbox id="fldPaisHidden" value="@{controller.entity.estado.pais}" visible="false"/>
+		<textbox id="fldEstadoHidden" value="@{controller.entity.estado}" visible="false"/>
+		
+		<hbox width="100%" height="50px" align="center" pack="center">
+			<button zclass="btn btn-block btn-success" width="170px" label="Salvar" onClick='controller.doAction("updateInformation")'/>
+			<separator width="30px"/>
+			<button zclass="btn btn-block btn-success" width="170px" label="Cancelar" onClick='modalInformation.detach()'/>
+		</hbox>
+	</vbox>
+	
+</window>

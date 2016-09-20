@@ -1,0 +1,126 @@
+<?page title="Pesquisa de Categoria de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<style>
+		div.cFldAtivo.z-hlayout .z-hlayout-inner{
+			float: right;
+		}
+		
+		div.buttons.z-hlayout{
+			text-align: center;
+		}
+	</style>
+	<div self="@define(content)">
+		<hbox width="100%" height="100%" pack="center"
+			apply="${routeComposer}">
+			<groupbox closable="false" sclass="frmGroupbox">
+				<caption sclass="myCaption" label="Pesquisa de Rotas" />
+				<grid hflex="min" sclass="nostyle">
+					<columns>
+						<column hflex="min" />
+						<column hflex="min" />
+						<column hflex="min" />
+						<column hflex="min" />
+					</columns>
+					<rows>
+						<row height='${c:getProperty("userlineheight")}'
+							style="color: black;">
+							<label value="Nome:"/>
+							<textbox id="fldNome" width="261px"
+								value="@{controller.entity.name}" maxlength="50"/>
+								
+							<label value="Categoria:"/>
+							<combobox id="fldCategory" width="110px" model="@{controller.routeCategories}" selectedItem="@{controller.entity.category}" />
+						</row>
+						<row spans="1,3">
+							<label value="Ponto Final:"/>
+							<textbox id="fldFinalPoint" width="528px"
+								value="@{controller.entity.finalPoint}" maxlength="500"/>
+						</row>
+						<row spans="1,3">
+							<label value="Pontos de Referência:"/>
+							<textbox id="fldReferencePoints" width="528px"
+								value="@{controller.entity.referencePoints}" maxlength="500"/>
+						</row>
+						<row
+							height='${c:getProperty("usersearchlineheight")}'
+							style="color: black;" spans="4">
+							<hlayout width="100%">
+								<hlayout sclass="buttons">
+									<button zclass="btn btn-mini btn-success"
+										mold="trendy" label="Pesquisar" onClick='controller.doAction("searchEntitys");'/>
+									<separator width="10px" />
+									<button mold="trendy"
+										zclass="btn btn-mini btn-success" label="Listar Todos"
+										onClick='controller.doAction("listAll");'>
+									</button>
+								</hlayout>
+								<hbox sclass="cFldAtivo">
+									<checkbox id="fldAtivo"
+										label="Exibir rotas desativadas" style="float: left;">
+										<attribute name="onCheck">
+											if(self.isChecked()){
+											 	controller.getEntity().setActive(false);
+											} else {
+												controller.getEntity().setActive(true);
+											}
+										</attribute>
+									</checkbox>
+								</hbox>
+							</hlayout>
+						</row>
+					</rows>
+				</grid>
+				<vbox width="100%" align="center">
+					<div align="left">
+					<vlayout>
+						<separator height="40px" orient="vertical" />
+						<label
+							value='${c:getProperty("usersearchinstruction")}'
+							style="color: red; font-size: 10px;" />
+					</vlayout>
+					<listbox id="resultList"
+						model="@{controller.listEntity}"
+						selectedItem="@{controller.selectedEntity}" hflex="min"
+						onAfterRender='self.clearSelection();' mold="paging"
+						pageSize="5">
+						<auxhead>
+							<auxheader align="right"
+								colspan='3'>
+								<hlayout>
+									<button sclass="noStyle"
+										image="/imagens/formularios/alterar.png"
+										hoverImage="/imagens/formularios/alterar-hover.png"
+										onClick='controller.redirectToUpdate();' />
+									<button sclass="noStyle"
+										image="/imagens/formularios/visualizar.png"
+										hoverImage="/imagens/formularios/visualizar-hover.png"
+										onClick='controller.viewRoute();' />
+									<button sclass="noStyle"
+										image="/imagens/formularios/desativar.png"
+										hoverImage="/imagens/formularios/desativar-hover.png"
+										onClick='controller.showDeactivateConfirmation();' />
+									<button sclass="noStyle"
+										image="/imagens/formularios/ativar.png"
+										hoverImage="/imagens/formularios/ativar-hover.png"
+										onClick='controller.showActivateConfirmation();' />
+								</hlayout>
+							</auxheader>
+						</auxhead>
+						<listhead>
+							<listheader label="Nome" width="300px" />
+							<listheader label="Categoria" width="150px" />
+							<listheader label="Status" width="100px" align="center" />
+						</listhead>
+						<listitem self="@{each=route}">
+							<listcell label="@{route.name}" ></listcell>
+							<listcell label="@{route.category.name}" />
+							<listcell label="@{route.active, converter='br.ueg.ezrides.view.converter.UserListcellConverter'}" />
+						</listitem>
+					</listbox>
+					</div>
+				</vbox>
+			</groupbox>
+		</hbox>
+	</div>
+</zk>

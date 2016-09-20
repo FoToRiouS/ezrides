@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/119/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys
+END
+Messages.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/Messages.java
+END
+RouteCategory.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/RouteCategory.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/115/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/User.java
+END
+Route.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/119/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/Route.java
+END
+Abuse.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/Abuse.java
+END
+RouteDaysOfWeek.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/RouteDaysOfWeek.java
+END
+State.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/State.java
+END
+SentMessages.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/SentMessages.java
+END
+Country.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/112/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/model/entitys/Country.java
+END

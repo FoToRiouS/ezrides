@@ -1,0 +1,13 @@
+<?page title="Erro!!"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)">
+		<vbox width="100%" height="500px" align="center" pack="center">
+			<label style="color: red; font-size: 30px;" value='${c:getSystemProperties("privatesaccess_error_message_1")}'/>
+			<separator height="30px"/>
+			<label style="color: red; font-size: 30px;" value='${c:getSystemProperties("privatesaccess_error_message_2")}'/>
+			<separator height="60px"/>
+			<a href="/"><label style="font-size: 20px;" value='${c:getSystemProperties("privatesaccess_error_message_link")}'/></a>
+		</vbox>
+	</div>
+</zk>

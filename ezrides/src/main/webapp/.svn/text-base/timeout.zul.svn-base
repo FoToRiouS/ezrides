@@ -1,0 +1,13 @@
+<?page title="Gerenciamento de Usuário"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)">
+		<window width="80%" title="Sessão expirada!" border="normal">
+			<vbox>
+				A página ou componente que você solicitou não está mais disponível.
+				Isto é normalmente causado por uma sessão expirada, muitas páginas da Internet aberta ou por reinicio do servidor.
+			</vbox>
+		</window>
+	</div>
+</zk>
+

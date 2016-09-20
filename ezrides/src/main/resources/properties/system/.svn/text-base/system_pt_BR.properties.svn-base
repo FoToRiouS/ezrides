@@ -1,0 +1,50 @@
+texto_pagina_login=Venha para a maior rede social de rotas que voc\u00EA j\u00E1 conheceu\!
+
+#Página de erros
+page_error_message_title=Erro\!
+page_error_message_1=N\u00E3o foi poss\u00EDvel acessar a p\u00E1gina que vc est\u00E1 tentando visualizar\!
+page_error_message_2=Possivelmente voc\u00EA n\u00E3o tem permiss\u00E3o para acessar esta p\u00E1gina\!
+page_error_message_3=Caso o problema persista contate o administrador\!
+page_error_message_link=Voltar a p\u00E1gina inicial\!
+
+#Página de acesso privado de perfil
+privatesaccess_error_message_1=O perfil que voc\u00EA est\u00E1 tentando acessar n\u00E3o \u00E9 p\u00FAblico\!
+privatesaccess_error_message_2=Caso conhe\u00E7a o usu\u00E1rio pe\u00E7a-o para tornar o pefil p\u00FAblico.
+privatesaccess_error_message_link=Voltar a p\u00E1gina inicial\!
+
+#Página de recuperação de senha
+texto_pagina_enviaremail=Digite um email e aperte em enviar senha para que seja enviado um email com as instru\u00E7\u00F5es de modifica\u00E7\u00E3o da sua senha\!.
+texto_pagina_enviaremail_confirmacao1=Email com as instru\u00E7\u00F5es para modificar a senha enviado com sucesso.
+texto_pagina_enviaremail_confirmacao2=Verifique a caixa de entrada do seu email e siga as instru\u00E7\u00F5es\!
+texto_pagina_enviaremail_link=Ir a p\u00E1gina de Login
+texto_pagina_modifsenha_confirmacao1=Sua senha foi modificada com sucesso\!
+texto_pagina_modifsenha_confirmacao2=Voc\u00EA j\u00E1 pode fazer login no sistema\!
+texto_pagina_modifsenha_link=Ir a p\u00E1gina de Login
+
+#Página do usuário
+user_noresultsearch=Nenhum usu\u00E1rio encontrado\!
+user_inclusao_confirmacao1=Usu\u00E1rio cadastrado com sucesso\!
+user_inclusao_confirmacao2=Acesse o email cadastrado e confirme o cadastro\!
+user_inclusao_confirmacao_link=Ir ao Login
+user_inclusao_confirmacao_link_adm=Voltar a tela do Administrador
+user_activate_page_message1=Usu\u00E1rio ativado com sucesso\!
+user_activate_page_message2=Voc\u00EA j\u00E1 pode acessar o sistema\!
+user_activate_page_link=Ir a p\u00E1gina de login
+
+#Página do usuário
+refusefriendship_message=Tem certeza que deseja rejeitar/excluir esta amizade?
+
+#Página do rotas
+route_noresultsearch=Nenhuma rota encontrada\!
+redirectprofile_tooltiptext=Redirecionar ao perfil do usu\u00E1rio\!
+viewrouteinformations_tooltiptext=Visualizar Informa\u00E7\u00F5es da rota\!
+viewroutegmaps_tooltiptext=Visualizar rota pelo GMaps\!
+
+#Página de Mensagens Pessoais
+destiny_empty_message=Voc\u00EA n\u00E3o possui nenhum amigo\!
+destiny_noresult_message=Voc\u00EA n\u00E3o possui nenhum amigo com este nome\!
+
+#Página de Denúncia
+viualize_route_tooltiptext=Visualizar rota\!
+remove_abuse_tooltiptext=Retirar den\u00FAncia\!
+remove_route_tooltiptext=Remover rota\!

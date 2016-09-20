@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/111/mavenSpring/ezrides/src/main/webapp/WEB-INF
+END
+zk.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/42/mavenSpring/ezrides/src/main/webapp/WEB-INF/zk.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/111/mavenSpring/ezrides/src/main/webapp/WEB-INF/web.xml
+END
+web.servlet-3.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/42/mavenSpring/ezrides/src/main/webapp/WEB-INF/web.servlet-3.xml
+END

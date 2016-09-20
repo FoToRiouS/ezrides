@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Recuperação de Senha"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk xmlns:h="native">
+	<div self="@define(content)">
+		<vbox width="100%" align="center" apply="${recoveryComposer}">
+			<groupbox sclass="frmGroupbox" width="1000px" style="overflow: auto;">
+				<caption sclass="myCaption" label="Recuperação de Senha"/>
+				<vbox width="100%" align="center">
+					<div width="820px" style="overflow: auto;">
+						<div id="form">
+							<hbox>
+								<grid sclass="nostyle" width="600px">
+									<columns>
+										<column width="100px"/>
+										<column hflex="min"/>
+										<column hflex="min"/>
+									</columns>
+									<rows>
+										<row>
+											<label value="Email:" style="font-size: 20px;" onClick="j_username.focus();" />
+											<textbox id="fldRecoveryEmail" width="300px" height="20px" style="font-size: 15px;" value="@{controller.userEmail}" onOK='controller.doAction("recoveryPassword");'/>
+											<button onClick='controller.doAction("recoveryPassword");' zclass="btn btn-success" label="Enviar Email"/>
+										</row>
+									</rows>
+								</grid>
+							</hbox>
+							<separator height="10px"/>
+							<hbox>
+								<label value='${c:getSystemProperties("texto_pagina_enviaremail")}' style="font-size: 15px;"/>
+							</hbox>
+						</div>
+						<div id="message" visible="false">
+							<vbox>
+								<label value='${c:getSystemProperties("texto_pagina_enviaremail_confirmacao1")}' style="font-size: 15px;"/>
+								<label value='${c:getSystemProperties("texto_pagina_enviaremail_confirmacao2")}' style="font-size: 15px;"/>
+								<separator height="30px"/>
+								<a label='${c:getSystemProperties("texto_pagina_enviaremail_link")}' href="/paginas/login.zul" style="font-size: 15px;"/>
+							</vbox>
+						</div>
+					</div>
+				</vbox>
+			</groupbox>
+		</vbox>
+	</div>
+</zk>

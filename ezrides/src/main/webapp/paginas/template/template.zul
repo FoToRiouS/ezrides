@@ -1,0 +1,31 @@
+<zk> 
+	  <?xel-method prefix="c" name="isLogged" class="br.com.vexillum.view.GenericComposer" signature="boolean isLogged()"?>
+	  <?xel-method prefix="c" name="isAdministrator" class="br.ueg.ezrides.view.composer.UserComposer" signature="boolean isAdministrator()"?>
+	  <?xel-method prefix="c" name="getProperty" class="br.com.vexillum.view.GenericComposer" signature="java.lang.String getProperty(java.lang.String)"?>
+	  <?xel-method prefix="c" name="getSystemProperties" class="br.com.vexillum.view.GenericComposer" signature="java.lang.String getSystemProperties(java.lang.String)"?>
+	  <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	  <include src="/style/default.zul"/>
+	  
+	  <style src="/style/bootstrap.css"/>
+	  
+	  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBlBzudowbqHIlFibjlwaenOULQZcfb7Ck&amp;sensor=false">
+	  </script>
+	  <script type="text/javascript" src="/scripts/gmaps.js"/>
+	  
+	  <borderlayout width="100%" height="100%">
+	    <north border="none" size="65px" class="header">
+	      <include src="/paginas/componentes/header.zul"/>
+	    </north>
+	    <west class="sidebar" size="170px" minsize="170" maxsize="170" id="sidebar" splittable="false" collapsible="false" if="${c:isLogged()}">
+	    	 <include src="/paginas/componentes/sidebar.zul"/>
+	    </west>
+	    <center border="none" flex="true" class="center" autoscroll="true">
+	    	<hlayout>
+				 <div hflex="15" vflex="1" class="center-right" xmlns:w='client' self="@insert(content)"></div>
+			</hlayout>
+	    </center>
+	    <south border="none" class="footer" size="15px">
+	      <include src="/paginas/componentes/footer.zul"/>
+	    </south>
+	  </borderlayout>
+</zk>

@@ -1,0 +1,152 @@
+<?xel-method prefix="c" name="haveIdOnRequest" class="br.com.vexillum.view.CRUDComposer" signature="boolean haveIdOnRequest()"?>
+<zk xmlns:w="http://www.zkoss.org/2005/zk/client">
+<zscript>
+	String larguraLinha = "25px";
+</zscript>
+<style src="/style/bootstrap.css"/>
+<hbox id="box" width="100%" height="100%" pack="center" apply="${managerUserComposer}" >
+	<groupbox closable="false" sclass="frmGroupbox" width="100%">
+		<caption sclass="myCaption" label="@{controller.groupboxTitle}"/>
+		<div id="form">
+			<grid hflex="min" zclass="nostyle">
+				<columns>
+					<column hflex="min"/>
+					<column hflex="min"/>
+				</columns>
+				<rows>
+					<row height='${c:getProperty("userlineheight")}' style="color: black;">
+						Nome:
+						<textbox id="fldName" width="437px" value="@{controller.entity.name}" maxlength="200"/>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						Email:
+						<textbox id="fldEmail" width="437px" value="@{controller.entity.email}" maxlength="200"/>
+					</row>
+					<row height='${c:getProperty("userlineheight")}' if="${!c:haveIdOnRequest()}">
+						Confirmar email:
+						<textbox id="fldCEmail" value="@{controller.cEmail}" width="437px" maxlength="200"/>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						Data de Nascimento: <hlayout>
+						<datebox id="fldBirthDate" cols="20" format="medium" value="@{controller.entity.birthDate}" maxlength="10"/>
+						<separator width="45px" />
+						Sexo: 	
+						<separator width="10px" />
+						<hlayout>		
+							<radiogroup id="fldSex" selectedItem="@{controller.entity.sex, converter='br.ueg.ezrides.view.converter.SexoEnumRadiogroupConverter'}">
+								<radio label="Masculino" value="Masculino" radiogroup="fldSex" style="padding-right: 8px;"/>
+								<radio label="Feminino" value="Feminino" radiogroup="fldSex" />
+							</radiogroup> </hlayout> 
+						</hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						Endereço:<hlayout>
+						<textbox id="fldEndereco" width="321px" value="@{controller.entity.endereco}" maxlength="500"/>
+						
+						<separator width="12px" />
+						
+						Número: 
+						<textbox id="fldNumero" width="38px" value="@{controller.entity.numero}" maxlength="10"/></hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						País: <hlayout>
+						<combobox id="fldPais" width="124px" model="@{controller.paises}" selectedItem="@{controller.pesqPais}">
+							<comboitem self="@{each=pais}" label="@{pais.nome}" />
+							<attribute name="onChange">
+		        				fldEstado.setRawValue(null);
+		        			</attribute>
+						</combobox>
+						<textbox id="fldPaisHidden" value="@{controller.entity.estado.pais}" visible="false"/>
+							
+						
+						<separator width="6px" />
+						
+						Estado:
+						<combobox id="fldEstado" width="60px" model="@{controller.estados load-when='fldPais.onChange'}" selectedItem="@{controller.entity.estado}" >
+							<comboitem self="@{each=est}" label="@{est.sigla}" />
+						</combobox>
+						<textbox id="fldEstadoHidden" value="@{controller.entity.estado}" visible="false"/>
+						
+						<separator width="6px" />
+						
+						Cidade:
+						<textbox id="fldCidade" width="125px" value="@{controller.entity.cidade}" maxlength="50"/>	</hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						Bairro:<hlayout>
+						<textbox id="fldBairro" width="290px" value="@{controller.entity.bairro}" maxlength="50"/>
+						
+						<separator width="6px" />
+						
+						CEP: 
+						<longbox id="fldCep" width="96px" value="@{controller.entity.cep}" maxlength="18"/></hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}'>
+						Telefone:<hlayout>
+						<longbox id="fldTelefone" width="177px" value="@{controller.entity.telefone}" maxlength="18"/>
+						
+						<separator width="23px" />
+						
+						Celular: 
+						<longbox id="fldCelular" width="177px" value="@{controller.entity.celular}" maxlength="18"/></hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}' if="${!c:haveIdOnRequest()}">
+						Senha:<hlayout>
+						<textbox id="fldPassword" type="password" width="150px" value="@{controller.entity.password}" maxlength="50"/>
+						
+						<separator width="23px" />
+						
+						Confirmar Senha: 
+						<textbox id="fldCSenha" value="@{controller.cSenha}" type="password" width="150px" maxlength="50"/></hlayout>
+					</row>
+					<row height='${c:getProperty("userlineheight")}' spans="2" align="center" if="${c:isAdministrator()}"> 
+						<vlayout width="100%" height="100%">
+							<separator bar="true"/> 
+							<label value="Administrador" style="font-size: 16px; text-align: center; color: red;"/> 
+							<separator bar="true"/>
+						</vlayout> 
+					</row>
+					<row height='${c:getProperty("userlineheight")}' if="${c:isAdministrator()}">
+						Categoria: <hlayout>
+						<combobox id="fldCategoria" width="150px" model="@{controller.categorias}" selectedItem="@{controller.entity.category}">
+							<comboitem self="@{each=cat}" label="@{cat.description}" />
+						</combobox>
+						
+						<separator width="50px" />
+						
+						Status: 	
+						<separator width="10px" />
+						<hlayout>		
+							<radiogroup id="fldActive" selectedItem="@{controller.entity.active, converter='br.ueg.ezrides.view.converter.BooleanRadiogroupConverter'}" style="display: inline-block;">
+									<radio label="Ativado" value="true" radiogroup="fldActive" style="padding-right: 8px;"/>
+		              				<radio label="Desativado" value="false" radiogroup="fldActive" />
+							</radiogroup></hlayout> 
+						</hlayout>
+					</row>
+					<row spans="2"><separator/></row>
+					<row height='${c:getProperty("userlineheight")}' spans="2" align="center">
+						<hlayout>
+							<button zclass="btn btn-success" label="Salvar"
+									onClick='controller.doAction("saveEntity");'
+									width="100px"/>
+							<separator width="125px"/>
+							<button zclass="btn btn-success" label="Cancelar"
+									href="/paginas/dashboard/"
+									width="100px"/>
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+		</div>
+		<div id="message" visible="false">
+			<vbox>
+				<label value='${c:getSystemProperties("user_inclusao_confirmacao1")}' style="font-size: 15px;"/>
+				<label value='${c:getSystemProperties("user_inclusao_confirmacao2")}' style="font-size: 15px;"/>
+				<separator height="30px"/>
+				<a label='${c:getSystemProperties("user_inclusao_confirmacao_link")}' href="/paginas/login.zul" style="font-size: 15px;" if="${!c:isAdministrator()}"/>
+				<a label='${c:getSystemProperties("user_inclusao_confirmacao_link_adm")}' href="/paginas/login.zul" style="font-size: 15px;" if="${c:isAdministrator()}"/>
+			</vbox>
+		</div>
+	</groupbox>
+</hbox>
+</zk>

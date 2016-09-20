@@ -1,0 +1,16 @@
+<borderlayout width="100%" height="45px" sclass="profileBorderlayout">
+	<west sclass="profileWest">
+		<a href="${requestScope.backHref}">
+			<hbox align="center">
+				<image src="/imagens/formularios/voltar.png" />
+				<label value="Voltar"/>
+			</hbox>
+		</a>
+	</west>
+	<center sclass="profileCenter"/>
+	<east sclass="profileEast">
+		<hbox vflex="1" align="center" >
+			<label value="${requestScope.pageTitle}" style="font-size: 20px"/>
+		</hbox>
+	</east>
+</borderlayout>

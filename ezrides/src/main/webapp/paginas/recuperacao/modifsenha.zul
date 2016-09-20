@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Recuperação de Senha"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk xmlns:h="native">
+	<div self="@define(content)">
+		<vbox width="100%" align="center" apply="${recoveryComposer}">
+			<groupbox sclass="frmGroupbox" width="1000px" style="overflow: auto;">
+				<caption sclass="myCaption" label="Recuperação de Senha"/>
+				<vbox width="100%" align="center">
+					<div width="820px" style="overflow: auto;">
+						<div id="form">
+							<hbox>
+								<grid sclass="nostyle" width="400px">
+									<columns>
+										<column width="230px"/>
+										<column hflex="min"/>
+									</columns>
+									<rows>
+										<row>
+											<label value="Nova Senha:" style="font-size: 20px;" onClick="j_username.focus();" />
+											<textbox id="fldRecoveryPassword" type="password" width="150px" height="20px" style="font-size: 15px;" value="@{controller.recoveryPassword}" onOK="fldCNewPassword.focus()"/>
+										</row>
+										<row>
+											<label value="Confirmar Nova Senha:" style="font-size: 20px;" onClick="password.focus();" />
+											<textbox id="fldCRecoveryPassword" type="password" name="password" width="150px" height="20px" style="font-size: 15px;" value="@{controller.cRecoveryPassword}" onOK='controller.doAction("updateRecoveryPassword");'/>
+										</row>
+										<row>
+											<div></div>
+										</row>
+										<row spans="2">
+											<hbox>
+												<button onClick='controller.doAction("updateRecoveryPassword");' zclass="btn btn-success" label="Modificar"/>
+												<separator width="30px"/>
+												<button href="/paginas/login.zul" sclass="btn btn-success" label="Voltar"/>
+											</hbox>
+										</row>
+									</rows>
+								</grid>
+							</hbox>
+							<hbox>
+								<label value='${c:getSystemProperties("texto_pagina_modifsenha")}'/>
+							</hbox>
+						</div>
+						<div id="message" visible="false">
+							<vbox>
+								<label value='${c:getSystemProperties("texto_pagina_modifsenha_confirmacao1")}' style="font-size: 15px;"/>
+								<label value='${c:getSystemProperties("texto_pagina_modifsenha_confirmacao2")}' style="font-size: 15px;"/>
+								<separator height="30px"/>
+								<a label='${c:getSystemProperties("texto_pagina_modifsenha_link")}' href="/paginas/login.zul" style="font-size: 15px;"/>
+							</vbox>
+						</div>
+					</div>
+				</vbox>
+			</groupbox>
+		</vbox>
+	</div>
+</zk>

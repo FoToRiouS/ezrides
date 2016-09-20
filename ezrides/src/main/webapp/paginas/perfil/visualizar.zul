@@ -1,0 +1,103 @@
+<?page title="Visualizar Perfil"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)">
+		<groupbox sclass="visualizar">
+		<hbox width="100%" height="100%" pack="center" apply="${profileComposer}">
+			<vbox>
+				<borderlayout width="700px" height="180px" sclass="profileBorderlayout">
+					<west size="170px" sclass="profileWest">
+						<hbox width="100%" height="100%" pack="center" align="center">
+							<image src="/imagens/fotopadrao.png" onCreate="br.ueg.ezrides.view.composer.UserComposer.showImageProfile(self, controller.getEntity(), null);" width="150px" height="150px"/>
+						</hbox>						
+					</west>
+					<center sclass="profileCenter">
+						<vbox width="100%" height="100%" pack="end">
+							<label value="@{controller.entity.email}" sclass="tituloMenor"/>
+							<label value="@{controller.entity.categoria.nome}" sclass="tituloMenor"/>
+							<label value="@{controller.entity.ultimoAcesso}" sclass="tituloMenor"/>
+<!-- 							<label value="rotas" sclass="tituloMenor"/> -->
+						</vbox>					
+					</center>
+					<east size="170px" sclass="profileEast">
+						<vbox width="100%" height="100%" pack="center">
+							<vbox visible="@{controller.isMe}">
+								<button zclass="btn btn-block btn-success" width="170px" label="Alterar Informações" onClick='controller.callModalWindow("/paginas/perfil/updateInformation.zul")' />
+								<button zclass="btn btn-block btn-success" width="170px" label="Alterar Senha" onClick='controller.callModalWindow("/paginas/perfil/updatePassword.zul")'/>
+								<button zclass="btn btn-block btn-success" width="170px" upload="true" label="Alterar Foto" onUpload='controller.changeProfileImage(event)'/>
+							</vbox>
+							<vbox visible="@{controller.notMe}">
+								<button zclass="btn btn-block btn-success" width="170px" label="Enviar Mensagem" onClick=''/>
+								<button id="btnSolicitarAmizade" zclass="btn btn-block btn-success" width="170px" label="Solicitar Amizade" onClick='controller.doAction("requestFriendship")'/>
+							</vbox>
+						</vbox>
+					</east>
+				</borderlayout>
+				<separator width="100px"/>				
+				<grid hflex="min" sclass="nostyle">
+					<columns>
+						<column hflex="min"/>
+						<column width="256px"/>
+						<column hflex="min"/>
+						<column width="256px"/>
+					</columns>
+					<rows>
+						<row spans="4" height="20px">
+							<vlayout>
+								<label value="Informações Pessoais" sclass="titulo1"/>
+								<separator width="100%" orient="horizontal" bar="true"/>
+							</vlayout>
+						</row>	
+						<row>
+							<label value="Nome:" sclass="titulo2"/>
+							<label value="@{controller.entity.nome}"/>
+							<label value="Sexo:" sclass="titulo2"/>
+							<label value="@{controller.entity.sex}"/>
+						</row>
+						<row id="rowPhones">
+							<label value="Telefone:" sclass="titulo2"/>
+							<label value="@{controller.entity.telefone}"/>
+							<label value="Celular:" sclass="titulo2"/>
+							<label value="@{controller.entity.celular}"/>
+						</row>
+						<row id="rowBirthDate">
+							<label value="Data de Nascimento:" sclass="titulo2"/>
+							<label value="@{controller.entity.birthDate, converter='org.zkoss.zkplus.databind.DateFormatConverter'}" self="@{format(dd/MM/yyyy)}"/>
+						</row>
+						<row><separator/></row>
+						<row spans="4" height="20px" id="rowLabelAddress">
+							<vlayout>
+								<label value="Endereço" sclass="titulo1"/>
+								<separator width="100%" orient="horizontal" bar="true"/>
+							</vlayout>
+						</row>							
+						<row id="rowCountryState">
+							<label value="País:" sclass="titulo2"/>
+							<label value="@{controller.entity.estado.pais.nome}"/>
+							<label value="Estado:" sclass="titulo2"/>
+							<label value="@{controller.entity.estado.nome}"/>
+						</row>
+						<row id="rowAddress1">
+							<label value="Endereço:" sclass="titulo2"/>
+							<label value="@{controller.entity.endereco}"/>
+							<label value="Número:" sclass="titulo2"/>
+							<label value="@{controller.entity.numero}"/>
+						</row>
+						<row id="rowAddress2">
+							<label value="Cidade:" sclass="titulo2"/>
+							<label value="@{controller.entity.cidade}"/>
+							<label value="Bairro:" sclass="titulo2"/>
+							<label value="@{controller.entity.bairro}"/>
+						</row>
+						<row id="rowCEP">
+							<label value="CEP:" sclass="titulo2"/>
+							<label value="@{controller.entity.cep}"/>
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+		</hbox>
+		</groupbox>
+		
+	</div>
+</zk>

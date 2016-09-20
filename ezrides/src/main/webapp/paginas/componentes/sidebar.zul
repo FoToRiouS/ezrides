@@ -1,0 +1,99 @@
+<zk>
+<zscript>
+	import br.ueg.ezrides.model.entitys.User;
+</zscript>
+<vlayout xmlns:h="native" vflex="1">
+	<a onClick="br.ueg.ezrides.view.composer.UserComposer.redirectToProfileSession();">
+		<vbox width="100%" height="150px" align="center" pack="center">
+			<image src="/imagens/fotopadrao.png"  onCreate="br.ueg.ezrides.view.composer.UserComposer.showImageProfile(self, null);" width="150px" height="150px"/>
+			<label>
+				<attribute name="onCreate"><![CDATA[
+					User user = br.com.vexillum.view.GenericComposer.getUserInSession();
+					self.setValue(user.getName());
+				]]></attribute>
+			</label>
+		</vbox>
+	</a>
+	<separator width="20px"/>
+	<div class="menuSidebar">
+	<a onClick="br.ueg.ezrides.view.composer.UserComposer.redirectToProfileSession();">
+		<div align="center" class="itens">
+			<image src="/imagens/verdinho.png" width="26px" height="${lineHeight}" class="icones"/>
+			<label value="Meu Perfil"/>
+			<div style="clear: both;"></div>
+		</div>
+	</a>	
+	<separator width="13px"/>
+	<a>
+		<attribute name="onClick"><![CDATA[
+			if(panelRotas.isVisible()){
+				panelRotas.setVisible(false);
+			} else {
+				panelRotas.setVisible(true);
+			}
+		]]></attribute>
+		<div align="center" class="itens">
+			<image src="/imagens/sidebar/minhasrotas.png" width="26px" height="26px" class="icones"/>
+			<label value="Rotas" style="vertical-align:middle;"/>
+		</div>	
+	</a>
+	<vbox id="panelRotas" visible="false" width="100%">
+		<hlayout width="100%">
+			<separator width="20px"/>		
+			<a href="/paginas/rotas/inclusao.zul">
+				<div align="center" class="itens" width="100%">
+					<image src="/imagens/sidebar/cadastrar-rota.png" width="26px" height="26px" class="icones"/>
+					<label value="Cadastrar" style="vertical-align:middle;padding-left: 5px;"/>
+				</div>	
+			</a>
+		</hlayout>
+		<hbox>
+			<separator width="20px"/>		
+			<a href="/paginas/rotas/pesquisa.zul">
+				<div align="center" class="itens">
+					<image src="/imagens/sidebar/minhas-rotas.png" width="26px" height="26px" class="icones"/>
+					<label value="Minhas Rotas" style="vertical-align:middle;padding-left: 5px;"/>
+				</div>	
+			</a>
+		</hbox>
+		<hbox>
+			<separator width="20px"/>		
+			<a href="/paginas/rotas/pesquisarotas.zul">
+				<div align="center" class="itens">
+					<image src="/imagens/sidebar/lupa_24X24.png" width="26px" height="26px" class="icones"/>
+					<label value="Pesquisar" style="vertical-align:middle;padding-left: 5px;"/>
+				</div>	
+			</a>
+		</hbox>
+	</vbox>
+	<separator width="13px"/>
+	<a href="/paginas/amizades/amizades.zul">
+		<div align="center" class="itens">
+			<image src="/imagens/sidebar/amigos.png" width="26px" height="26px" class="icones"/>
+			<label value="Amigos" style="vertical-align:middle;"/>
+		</div>
+	</a>
+	<separator width="13px"/>
+	<a href="/paginas/mensagens/lista.zul">
+		<div align="center" class="itens">
+			<image src="/imagens/sidebar/mps.jpg" width="26px" height="26px" class="icones"/>
+			<label value="Mensagens Pessoais" style="vertical-align:middle;"/>
+		</div>
+	</a>
+	<separator width="13px"/>
+	<a href="/paginas/configs/configuration.zul">
+		<div align="center" class="itens">
+			<image src="/imagens/sidebar/configuracoes.png" width="26px" height="26px" class="icones"/>
+			<label value="Configurações" style="vertical-align:middle;"/>
+		</div>
+	</a>
+	<separator width="13px"/>
+	<a href="/paginas/administrador/" if="${c:isAdministrator()}">
+		<div align="center" class="itens">
+			<image src="/imagens/sidebar/administrador.jpg" width="26px" height="26px" class="icones"/>
+			<label value="Administrador" style="vertical-align:middle;"/>
+		</div>
+	</a>
+	</div>
+</vlayout>
+</zk>

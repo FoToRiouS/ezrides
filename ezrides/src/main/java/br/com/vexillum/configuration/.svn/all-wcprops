@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/111/mavenSpring/ezrides/src/main/java/br/com/vexillum/configuration
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/111/mavenSpring/ezrides/src/main/java/br/com/vexillum/configuration/applicationContext.xml
+END
+springSecurity.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/109/mavenSpring/ezrides/src/main/java/br/com/vexillum/configuration/springSecurity.xml
+END

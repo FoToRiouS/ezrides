@@ -1,0 +1,59 @@
+<grid hflex="min" sclass="nostyle">
+	<columns>
+		<column width="150px" />
+		<column width="300px" />
+		<column width="100px" />
+		<column width="100px" />
+	</columns>
+	<rows>
+		<row spans="4">
+			<toolbar height="45px">
+				<toolbarbutton id="toolFacebook" image="/imagens/facebook32x32.png" onClick="controller.publishRouteOnFacebook()" tooltiptext="Publicar no Facebook!" height="36px"/>
+				<toolbarbutton id="toolTwitter" image="/imagens/twitter32x32.png" onClick="controller.publishRouteOnTwitter()" tooltiptext="Publicar no Twitter!" height="36px"/>
+				<toolbarbutton id="toolAbuse" image="/imagens/abuse32x32.png" onClick='controller.callModalWindow("/paginas/denuncia/denuncia.zul")' tooltiptext="Reportar Abuso!" height="36px"/>
+				<toolbarbutton id="toolProfile" image="/imagens/user32x32.png" onClick='controller.redirectToProfile()' height="36px"/>
+				<toolbarbutton id="toolGMaps" image="/imagens/gmaps32x32.png" onClick='controller.callModalWindow("/paginas/rotas/visualizarRota.zul")' height="36px"/>
+			</toolbar>
+			<hbox width="100%" pack="end">
+				<image src="/imagens/abuse32x32.png" onClick='' style="cursor: pointer;" tooltiptext="Reportar Abuso!"/>
+				<image src="/imagens/user32x32.png" onClick='controller.redirectToProfile()' style="cursor: pointer;"/>
+				<image src="/imagens/gmaps32x32.png" onClick='controller.callModalWindow("/paginas/rotas/visualizarRota.zul")' style="cursor: pointer;"/>
+			</hbox>
+		</row>
+		<row height='${c:getProperty("userlineheight")}'
+			style="color: black;">
+			<label sclass="heavy" value="Nome:"/>
+			<textbox id="fldNome" width="261px" value="@{controller.entity.name}" readonly="true"/>
+				
+			<label sclass="heavy" value="Categoria:"/>
+			<textbox id="fldCategory" value="@{controller.entity.category}" hflex="1" readonly="true"/>
+		</row>
+		<row spans="1,3">
+			<label sclass="heavy" value="Ponto Inicial:"/>
+			<textbox id="fldInitialPoint" hflex="1"
+				value="@{controller.entity.initialPoint}" readonly="true"/>
+		</row>
+		<row spans="1,3">
+			<label sclass="heavy" value="Ponto Final:"/>
+			<textbox id="fldFinalPoint" hflex="1"
+				value="@{controller.entity.finalPoint}" readonly="true"/>
+		</row>
+		<row spans="1,3">
+			<label sclass="heavy" value="Pontos de Referência:"/>
+			<textbox id="fldReferencePoints" hflex="1"
+				value="@{controller.entity.referencePoints}" readonly="true"/>
+		</row>
+		<row spans="1,3">
+			<label sclass="heavy" value="Frequência:"/>
+			<hbox hflex="1">
+				<hbox id="dateRoute" visible="true" hflex="1">
+					<textbox id="fldDateRoute" hflex="1" value="@{controller.entity.dateRoute, converter='org.zkoss.zkplus.databind.DateFormatConverter'}" self="@{format(dd/MM/yyyy)}" readonly="true"/>
+				</hbox>
+				<hbox id="daysOfWeek" visible="true" hflex="2">
+					<textbox id="fldDaysOfWeek" value="@{controller.entity.daysOfWeekText}" hflex="1" readonly="true"/>
+				</hbox>
+			</hbox>
+			
+		</row>
+	</rows>
+</grid>

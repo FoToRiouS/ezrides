@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/Ezrides" />
+
+    <bean id="VXAuthenticatorProvider" class="br.ueg.ezrides.control.security.SecurityProvider"/>
+    
+	<!-- Parte do Spring Security -->
+	<security:http auto-config="true">
+<!-- 		<security:logout logout-url="logout" logout-success-url="/paginas/login.zul" invalidate-session="true"/>   -->
+		<security:intercept-url pattern="/paginas/denuncia/lista.zul" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/paginas/denuncia/**" access="ROLE_ADMIN, ROLE_USER" />
+		
+		<security:intercept-url pattern="/paginas/mensagens/**" access="ROLE_ADMIN, ROLE_USER" />
+
+		<security:intercept-url pattern="/paginas/dashboard/**" access="ROLE_ANONYMOUS, ROLE_ADMIN, ROLE_USER" />
+
+		<security:intercept-url pattern="/paginas/rotas/**" access="ROLE_ADMIN,ROLE_USER" />
+
+		<security:intercept-url pattern="/paginas/amizades/**" access="ROLE_ADMIN,ROLE_USER" />
+
+		<security:intercept-url pattern="/paginas/perfil/visualizar.zul" access="ROLE_ADMIN,ROLE_USER" />
+		
+		<security:intercept-url pattern="/paginas/usuario/pesquisausuarios.zul" access="ROLE_USER, ROLE_ADMIN" />
+		<security:intercept-url pattern="/paginas/usuario/inclusao.zul" access="ROLE_ANONYMOUS, ROLE_ADMIN" />
+		<security:intercept-url pattern="/paginas/usuario/ativar.zul" access="ROLE_ANONYMOUS" />
+		<security:intercept-url pattern="/paginas/usuario/**" access="ROLE_ADMIN" />
+		
+		<security:intercept-url pattern="/paginas/categoriarota/**" access="ROLE_ADMIN" />
+		
+		<security:intercept-url pattern="/paginas/administrador/**" access="ROLE_ADMIN" />
+		
+		<security:intercept-url pattern="/paginas/configs/configuration.zul" access="ROLE_ADMIN,ROLE_USER" />
+		
+		<security:intercept-url pattern="/paginas/erros/**" access="ROLE_ADMIN,ROLE_USER" />
+		
+		<security:intercept-url pattern="/paginas/**"	access="ROLE_ANONYMOUS" />
+		
+		<security:logout logout-success-url="/paginas/login.zul" invalidate-session="true" logout-url="/logout"/>
+		
+		<security:access-denied-handler error-page="/paginas/erros/error.zul"/>
+		
+		<security:form-login login-page="/paginas/login.zul"
+			default-target-url="/paginas/dashboard/"
+			authentication-failure-url="/paginas/login.zul?error=true" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider ref="VXAuthenticatorProvider"/>
+		<security:authentication-provider>
+			<!-- A query users-by-username-query deve retorna as colunas username, 
+				password e enable username-query deve trazer o nome de usuário e o tipo de 
+				autenticação (username, authority) (OBRIGATORIAMENTE) -->
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select email as username, password, CASE WHEN active = 1 THEN 'true' ELSE 'false' END AS enable from users where active = '1' and email=?"
+				authorities-by-username-query="select u.email as username, c.name as authority from users as u inner join category as c on c.id = u.id_category where u.email=?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

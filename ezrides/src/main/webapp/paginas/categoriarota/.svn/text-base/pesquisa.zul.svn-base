@@ -1,0 +1,101 @@
+<?page title="Pesquisa de Categoria de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<style>
+		div.cFldAtivo.z-hlayout .z-hlayout-inner{
+			float: right;
+		}
+		
+		div.buttons.z-hlayout{
+			text-align: center;
+		}
+	</style>
+	<div self="@define(content)">
+		<hbox width="100%" height="100%" pack="center"
+			apply="${routeCategoryComposer}">
+			<groupbox closable="false" sclass="frmGroupbox">
+				<caption sclass="myCaption" label="Pesquisa de Categoria de Rotas" />
+				<grid hflex="min" sclass="nostyle">
+					<columns>
+						<column hflex="min" />
+						<column hflex="min" />
+						<column hflex="min" />
+					</columns>
+					<rows>
+						<row
+							height='${c:getProperty("usersearchlineheight")}'
+							style="color: black;">
+							Nome:
+							<hlayout>
+								<textbox width="380px"
+									value="@{controller.entity.name}" />
+							</hlayout>
+							<hlayout sclass="buttons">
+								<button zclass="btn btn-success" label="Pesquisar" onClick='controller.doAction("searchEntitys");'/>
+								<separator width="10px" />
+								<button zclass="btn btn-success" label="Listar Todos"
+									onClick='controller.doAction("listAll");'>
+								</button>
+							</hlayout>
+						</row>
+						<row spans="3"
+							height='${c:getProperty("usersearchlineheight")}'
+							valign="middle">
+							<hbox sclass="cFldAtivo">
+								<checkbox id="fldAtivo"
+									label="Exibir categorias desativadas" style="float: left;">
+									<attribute name="onCheck">
+										if(self.isChecked()){
+										 	controller.getEntity().setActive(false);
+										} else {
+											controller.getEntity().setActive(true);
+										}
+									</attribute>
+								</checkbox>
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+				<vbox width="100%" align="center">
+					<div align="left">
+					<vlayout>
+						<separator height="40px" orient="vertical" />
+						<label
+							value='${c:getProperty("usersearchinstruction")}'
+							style="color: red; font-size: 10px;" />
+					</vlayout>
+					<listbox id="resultList"
+						model="@{controller.listEntity}"
+						selectedItem="@{controller.selectedEntity}" hflex="min"
+						onAfterRender='self.clearSelection();' mold="paging"
+						pageSize="5">
+						<auxhead>
+							<auxheader align="right"
+								colspan='2'>
+								<hlayout>
+									<button sclass="noStyle"
+										image="/imagens/formularios/alterar.png"
+										hoverImage="/imagens/formularios/alterar-hover.png"
+										onClick='controller.redirectToUpdate();' />
+									<button sclass="noStyle"
+										image="/imagens/formularios/desativar.png"
+										hoverImage="/imagens/formularios/desativar-hover.png"
+										onClick='controller.showDeactivateConfirmation();' />
+								</hlayout>
+							</auxheader>
+						</auxhead>
+						<listhead>
+							<listheader label="Nome" width="350px" />
+							<listheader label="Status" width="100px" align="center" />
+						</listhead>
+						<listitem self="@{each=user}">
+							<listcell label="@{user.name}" />
+							<listcell label="@{user.active, converter='br.ueg.ezrides.view.converter.UserListcellConverter'}" />
+						</listitem>
+					</listbox>
+					</div>
+				</vbox>
+			</groupbox>
+		</hbox>
+	</div>
+</zk>

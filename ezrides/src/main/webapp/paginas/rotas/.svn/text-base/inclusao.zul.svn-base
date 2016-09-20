@@ -1,0 +1,110 @@
+<?page title="Gerenciamento de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk xmlns:n="native">
+	<div self="@define(content)" onCreate='Clients.evalJavaScript("initializeGMaps()")'>
+		<hbox width="100%" height="100%" pack="center"
+			apply="${routeComposer}">
+			<groupbox closable="false" sclass="frmGroupbox">
+				<caption sclass="myCaption"
+					label="@{controller.groupboxTitle}" />
+				<grid hflex="min" sclass="nostyle">
+					<columns>
+						<column hflex="min" />
+						<column hflex="min" />
+						<column hflex="min" />
+						<column hflex="min" />
+					</columns>
+					<rows>
+						<row height='${c:getProperty("userlineheight")}'
+							style="color: black;">
+							<label value="Nome:"/>
+							<textbox id="fldName" width="261px"
+								value="@{controller.entity.name}" maxlength="50"/>
+								
+							<label value="Categoria:"/>
+							<combobox id="fldCategory" hflex="1" model="@{controller.routeCategories}" selectedItem="@{controller.entity.category}" />
+						</row>
+						<row spans="1,3">
+							<label value="Ponto Inicial:"/>
+							<hbox hflex="1">
+								<textbox id="fldInitialPoint" hflex="1"
+									value="@{controller.entity.initialPoint}" maxlength="500">
+									<attribute name="onChange">
+									<![CDATA[
+										String starta = fldInitialPoint.getValue();
+										String enda = fldFinalPoint.getValue();
+										Clients.evalJavaScript("calcRoute(\"" + starta + "\", \"" + enda + "\");");
+									]]>
+									</attribute>
+								</textbox> 
+								<image src="/imagens/help.png" tooltip="helpRoute" style="cursor: help;" hflex="min"/>
+							</hbox>
+							
+						</row>
+						<row spans="1,3">
+							<label value="Ponto Final:"/>
+							<hbox hflex="1">
+								<textbox id="fldFinalPoint" hflex="1"
+									value="@{controller.entity.finalPoint}" maxlength="500" popup="helpRoute">
+									<attribute name="onChange">
+									<![CDATA[
+										String starta = fldInitialPoint.getValue();
+										String enda = fldFinalPoint.getValue();
+										Clients.evalJavaScript("calcRoute(\"" + starta + "\", \"" + enda + "\");");
+									]]>
+									</attribute>
+								</textbox>
+								<image src="/imagens/help.png" tooltip="helpRoute" style="cursor: help;" hflex="min"/>
+							</hbox>
+						</row>
+						<row spans="1,3">
+							<label value="Pontos de Referência:"/>
+							<textbox id="fldReferencePoints" width="528px"
+								value="@{controller.entity.referencePoints}" maxlength="500"/>
+						</row>
+						<row spans="1,3">
+							<label value="Frequência:"/>
+							<hbox>
+								<combobox id="cmbFrequency" onChange="controller.showDaysField(self.getSelectedItem());" width="130px">
+									<comboitem value="dateRoute" label="Único Dia"/>
+									<comboitem value="daysOfWeek" label="Dias da Semana"/>
+								</combobox>
+								<hbox id="dateRoute" visible="false">
+									<datebox id="fldDateRoute" value="@{controller.entity.dateRoute}"/>
+								</hbox>
+								<hbox id="daysOfWeek" visible="false">
+									<chosenbox id="fldDaysOfWeek" model="@{controller.daysOfWeek}" selectedObjects="@{controller.listDaysOfWeek}" width="396px" onSelect="controller.setDayOfWeek(event);"/>
+								</hbox>
+							</hbox>
+						</row>
+						<row spans="4" value="@{controller.entity.disponibility}">
+							<checkbox label="Disponível" checked="@{controller.entity.disponibility}"/>
+						</row>
+						<row spans="4">
+							<div hflex="1" height="230px">
+								<n:div id="map_canvas"></n:div>
+							</div>
+						</row>
+						<row height='${c:getProperty("userlineheight")}'
+							spans="4" align="center">
+							<hbox width="100%" pack="center">
+								<button zclass="btn btn-success" label="Salvar"
+									onClick='controller.doAction("saveEntity");' width="130px" />
+								<separator width="125px" />
+								<button zclass="btn btn-success" label="Cancelar"
+									href="/paginas/rotas/" width="130px" />
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<popup id="helpRoute" width="300px">
+		        <html><![CDATA[
+		            O endereço deve ser inserido seguindo as regras do Google Maps! <br>
+		            Por exemplo: Rua Conde Afonso Celso, 25 - Centro. Anápolis - Goiás. <br>
+		            OBS: Também pode ser inserido apenas o CEP, com o traço (75025-030).
+		        ]]></html>
+  		  </popup>
+		</hbox>
+	</div>
+</zk>

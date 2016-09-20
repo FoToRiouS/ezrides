@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/116/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator
+END
+UserValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/116/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator/UserValidator.java
+END
+RouteValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/116/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator/RouteValidator.java
+END
+MessagesValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/113/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator/MessagesValidator.java
+END
+BaseValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/116/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator/BaseValidator.java
+END
+RouteCategoryValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/116/mavenSpring/ezrides/src/main/java/br/ueg/ezrides/control/validator/RouteCategoryValidator.java
+END

@@ -1,0 +1,51 @@
+<?page title="Pesquisa de Categoria de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)">
+		<hbox width="100%" height="100%" pack="center"
+			apply="${receivedMessagesComposer}">
+			<vbox width="100%" align="center">
+				<div align="left">
+				<include src="/paginas/template/topPages.zul" pageTitle="Mensagens Pessoais" backHref="/paginas/dashboard/"/>
+				<listbox id="messagesList"
+					model="@{controller.receivedMessages}"
+					selectedItem="@{controller.selectedReceivedMessage}" hflex="min"
+					onAfterRender='self.clearSelection();' mold="paging"
+					pageSize="5" onDoubleClick="controller.callVisualizeWindow()">
+					<auxhead>
+						<auxheader align="right"
+							colspan='4'>
+							<hlayout>
+								<button sclass="noStyle"
+									image="/imagens/formularios/excluir.png"
+									hoverImage="/imagens/formularios/excluir-hover.png" 
+									onClick="controller.showSentMessageDeactivateConfirmation()"/>
+								<button sclass="noStyle"
+									image="/imagens/formularios/visualizar.png"
+									hoverImage="/imagens/formularios/visualizar-hover.png" 
+									onClick="controller.callVisualizeWindow()"/>
+								<button sclass="noStyle"
+									image="/imagens/formularios/enviar-mensagem.png"
+									hoverImage="/imagens/formularios/enviar-mensagem-hover.png" 
+									onClick="controller.callSendWindow()"/>
+							</hlayout>
+						</auxheader>
+					</auxhead>
+					<listhead>
+						<listheader label="Enviado por" width="200px" />
+						<listheader label="Titulo" width="200px" />
+						<listheader label="Mensagem" width="300px" />
+						<listheader label="Data de Envio" width="150px" align="center" />
+					</listhead>
+					<listitem self="@{each=message}">
+						<listcell label="@{message.message.owner}" />
+						<listcell label="@{message.message.title}" />
+						<listcell label="@{message.message.bodyMessage}" />
+						<listcell label="@{message.sentTime}" />
+					</listitem>
+				</listbox>
+				</div>
+			</vbox>
+		</hbox>
+	</div>
+</zk>

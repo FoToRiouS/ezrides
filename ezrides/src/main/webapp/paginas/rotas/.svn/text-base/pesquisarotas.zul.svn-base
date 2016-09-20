@@ -1,0 +1,73 @@
+<?page title="Pesquisa de Rotas"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<style>
+		.message.z-label{
+			font-size: 20px;
+		}
+	</style>
+	<div self="@define(content)" height="100">
+		<hbox width="100%" height="100%" pack="center" apply="${searchRoutesComposer}" sclass="allScreen">
+			<groupbox closable="false" sclass="frmGroupbox" width="100%" height="548px">
+				<caption sclass="myCaption" label="Pesquisa de Rotas" />
+				<vbox width="100%" height="100%" align="center">
+					<grid hflex="min" sclass="nostyle">
+						<columns>
+							<column hflex="min" />
+						</columns>
+						<rows>
+							<row height='${c:getProperty("usersearchlineheight")}' style="color: black;">
+								<hlayout>
+									<textbox width="700px"
+										value="@{controller.searchField}" placeholder="Pesquise alguma rota inserindo a chave de pesquisa aqui!" onChange='controller.doAction("searchRoutes")' onOK='controller.doAction("searchRoutes")'/>
+								</hlayout>
+							</row>
+							<row height='${c:getProperty("usersearchlineheight")}' style="color: black;">
+								<hbox width="100%" pack="center">
+									<label value="Categoria:" hflex="min"/>
+									<combobox width="150px" model="@{controller.routeCategories}" selectedItem="@{controller.searchCategory}"
+										placeholder="Todos..." onChange='controller.doAction("searchRoutes")'/>
+									<hbox hflex="1" pack="end">
+										<separator hflex="1"/>
+										<checkbox label="Mostrar rotas indisponíveis" checked="@{controller.disponibility}" onCheck='controller.doAction("searchRoutes")' hflex="min"/>
+									</hbox>
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+					<separator width="700px" bar="true"/>
+					<grid id="resultList" model="@{controller.listEntity}" hflex="min" mold="paging" pageSize="3" sclass="nostyle" visible="false">
+						<rows>
+							<row self="@{each=route}" value="@{route}">
+								<vbox align="center">
+									<borderlayout width="515px" height="98px" sclass="pesqUsuario">
+										<west>
+											<vbox width="100%" vflex="1">
+												<hlayout vflex="1"><button zclass="btn btn-success btn-xs disabled" label="Ponto Inicial" width="80px"/><label value="@{route.initialPoint }"/></hlayout>
+												<hlayout vflex="1"><button zclass="btn btn-success btn-xs disabled" label="Ponto Final" width="80px"/><label value="@{route.finalPoint }"/></hlayout>
+												<hlayout vflex="1"><button zclass="btn btn-success btn-xs disabled" label="Referências" width="80px"/><label value="@{route.referencePoints }"/></hlayout>
+												<hlayout vflex="1" onCreate="controller.createDisponibilityButton(self);"/>
+											</vbox>
+										</west>
+										<center>
+											
+										</center>
+										<east>
+											<vbox width="100%" height="100%" align="center" pack="center">
+												<button sclass="btn btn-success reduced" image="/imagens/perfil_20X20.png" onClick="controller.redirectToProfile(self)" width="30px" tooltiptext='${c:getSystemProperties("redirectprofile_tooltiptext")}'/>
+												<button sclass="btn btn-success reduced" image="/imagens/lupa_20X20.png" onClick="controller.viewRoute(self)" width="30px" tooltiptext='${c:getSystemProperties("viewrouteinformations_tooltiptext")}'/>
+												<button sclass="btn btn-success reduced" image="/imagens/gmaps_20X20.png" onClick="controller.callViewRouteModal(self)" width="30px" tooltiptext='${c:getSystemProperties("viewroutegmaps_tooltiptext")}'/>
+											</vbox>
+										</east>
+									</borderlayout>
+									<separator width="700px" bar="true"/>
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+					<label id="noResultMessage" sclass="message" value='${c:getSystemProperties("route_noresultsearch")}' style="color: red;" visible="false"/>
+				</vbox>
+			</groupbox>
+		</hbox>
+	</div>
+</zk>

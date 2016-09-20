@@ -1,0 +1,7 @@
+<?page title="Gerenciamento de Usuário"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)" apply="${testeComposer}">
+		<button label="Teste do Facebookison" onClick="controller.testeMessage();"/>
+	</div>
+</zk>

@@ -1,0 +1,149 @@
+<zk>
+	<zscript>
+	String larguraLinha = "35px";
+</zscript>
+	<hbox width="100%" height="100%" pack="center" apply="${managerUserComposer}">
+		<groupbox closable="false" sclass="frmGroupbox">
+			<caption sclass="myCaption" label="Pesquisa de Usuários" />
+			<grid hflex="min" sclass="nostyle">
+				<columns>
+					<column hflex="min" />
+					<column hflex="min" />
+				</columns>
+				<rows>
+					<row height='${c:getProperty("usersearchlineheight")}'
+						style="color: black;">
+						Nome:
+						<hlayout>
+							<textbox width="380px"
+								value="@{controller.entity.name}" />
+
+							<separator width="9px" />
+
+							Email:
+							<textbox width="260px"
+								value="@{controller.entity.email}" />
+						</hlayout>
+					</row>
+					<row height='${c:getProperty("usersearchlineheight")}'>
+						País:
+						<hlayout>
+							<combobox id="fldPais" width="150px"
+								model="@{controller.paises}"
+								selectedItem="@{controller.pesqPais}">
+								<comboitem self="@{each=pais}"
+									label="@{pais.nome}" />
+								<attribute name="onChange">
+	fldEstado.setRawValue(null);
+</attribute>
+							</combobox>
+
+
+							<separator width="20px" />
+
+							Estado:
+							<combobox id="fldEstado" width="60px"
+								model="@{controller.estados load-when='fldPais.onChange'}"
+								selectedItem="@{controller.entity.estado}">
+								<comboitem self="@{each=est}"
+									label="@{est.sigla}" />
+							</combobox>
+
+							<separator width="19px" />
+
+							Cidade:
+							<textbox width="187px"
+								value="@{controller.entity.cidade}" />
+
+							<separator width="10px" />
+
+							CEP:
+							<longbox width="96px"
+								value="@{controller.entity.cep}" />
+						</hlayout>
+					</row>
+					<row height='${c:getProperty("usersearchlineheight")}'>
+						Endereço:
+						<hlayout>
+							<textbox width="352px"
+								value="@{controller.entity.endereco}" />
+
+							<separator width="11px" />
+
+							Número:
+							<textbox width="43px"
+								value="@{controller.entity.numero}" />
+
+							<separator width="10px" />
+
+							Bairro:
+							<textbox width="170px"
+								value="@{controller.entity.bairro}" />
+						</hlayout>
+					</row>
+					<row spans="2" height='${c:getProperty("usersearchlineheight")}'
+						valign="middle">
+						<hlayout>
+							<button zclass="btn btn-success" label="Pesquisar">
+								<attribute name="onClick"><![CDATA[
+									controller.doAction("searchByHQL");
+								]]>								
+							</attribute>
+							</button>
+							<separator width="43px" />
+							<button zclass="btn btn-success" label="Listar Todos"
+								onClick='controller.doAction("listAll");'>
+							</button>
+							<separator width="310px" />
+							<checkbox id="fldAtivo" label="Exibir usuários desativados" style="float: right;" checked="false">
+								<attribute name="onCheck">
+									if(self.isChecked()){
+									 	controller.getEntity().setActive(false);
+									} else {
+										controller.getEntity().setActive(true);
+									}
+								</attribute>
+							</checkbox>
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+			<vlayout>
+				<separator height="40px" orient="vertical" />
+				<label value='${c:getProperty("usersearchinstruction")}' style="color: red; font-size: 10px;"/>
+			</vlayout>
+			<listbox id="resultList" model="@{controller.listEntity}"
+				selectedItem="@{controller.selectedEntity}" hflex="min"
+				onAfterRender='self.clearSelection();' 
+				mold="paging" pageSize="5">
+				<auxhead>
+					<auxheader align="right" colspan='${c:getProperty("usersearchpagesize")}'>
+						<hlayout>
+							<button sclass="noStyle" image="/imagens/formularios/alterar.png"	hoverImage="/imagens/formularios/alterar-hover.png" onClick='controller.redirectToUpdate();'/>
+							<button sclass="noStyle"
+								image="/imagens/formularios/desativar.png"
+								hoverImage="/imagens/formularios/desativar-hover.png" onClick='controller.callDeactivationConfirmation();'/>
+							<button sclass="noStyle"
+								image="/imagens/formularios/alterar-perfil.png"
+								hoverImage="/imagens/formularios/alterar-perfil-hover.png" onClick='controller.redirectToProfile();'/>
+						</hlayout>
+					</auxheader>
+				</auxhead>
+				<listhead>
+					<listheader label="Nome" width="255px" />
+					<listheader label="Email" width="195px" />
+					<listheader label="País" width="130px" />
+					<listheader label="Estado" width="154px" />
+					<listheader label="Status" width="55px" align="center"/>
+				</listhead>
+				<listitem self="@{each=user}">
+					<listcell label="@{user.nome}" />
+					<listcell label="@{user.email}" />
+					<listcell label="@{user.estado.pais.nome}" />
+					<listcell label="@{user.cidade}" />
+					<listcell label="@{user.active, converter='br.ueg.ezrides.view.converter.UserListcellConverter'}" />
+				</listitem>
+			</listbox>
+		</groupbox>
+	</hbox>
+</zk>

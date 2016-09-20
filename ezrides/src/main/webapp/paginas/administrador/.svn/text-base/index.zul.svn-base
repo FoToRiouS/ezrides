@@ -1,0 +1,48 @@
+<?page title="Gerenciamento de Usuário"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<style>
+		button img {
+			padding-bottom: 5px;
+		}
+	</style>
+	<div self="@define(content)">
+		<hlayout>
+			<separator width="30px"/>
+			<div>
+				<button id="buttonUser" label="Gerenciamento de Usuário" image="/imagens/administrator.png" orient="vertical" width="180px" height="160px" style="font-size: 13px;"/>
+				<div id="usersOptions">
+					<vbox>
+						<button image="/imagens/add-icon.png" label="Cadastrar" width="180px" height="38px" href="/paginas/usuario/inclusao.zul"/>
+						<button image="/imagens/search-icon.png" label="Pesquisar" width="180px" height="38px" href="/paginas/usuario/pesquisa.zul"/>
+					</vbox>
+				</div>
+			</div>
+			<div>
+				<button id="buttonRCategory" label="Gerenciamento de Categoria de Rotas" image="/imagens/route_category.png" orient="vertical" width="180px" height="160px" style="font-size: 13px;"/>
+				<div id="rcategoryOptions">
+					<vbox>
+						<button image="/imagens/add-icon.png" label="Cadastrar" width="180px" height="38px" href="/paginas/categoriarota/inclusao.zul"/>
+						<button image="/imagens/search-icon.png" label="Pesquisar" width="180px" height="38px" href="/paginas/categoriarota/pesquisa.zul"/>
+					</vbox>
+				</div>
+			</div>
+			<div>
+				<button id="buttonAbuse" label="Denúncias" image="/imagens/close128x128.png" orient="vertical" width="180px" height="160px" style="font-size: 13px;" href="/paginas/denuncia/lista.zul"/>
+			</div>
+		</hlayout>
+	</div>
+	<script type="text/javascript">
+		zk.afterMount(function() {
+			$("$usersOptions").hide();
+	        $("$buttonUser").click(function() {
+			 	$("$usersOptions").fadeToggle();
+			});
+			
+			$("$rcategoryOptions").hide();
+	        $("$buttonRCategory").click(function() {
+			 	$("$rcategoryOptions").fadeToggle();
+			});
+        });
+	</script>
+</zk>

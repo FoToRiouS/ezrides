@@ -1,0 +1,6 @@
+<window id="mapRoute" title="Visualização da Rota" border="normal" position="center, center" closable="true" width="775px" height="600px" xmlns:n="native" onCreate='Clients.evalJavaScript("initializeGMaps()")' apply="${viewMapComposer}">
+	<div self="@define(content)" width="100%" height="100%">
+		<n:div id="map_canvas">
+		</n:div>
+	</div>
+</window>

@@ -1,0 +1,28 @@
+<?page title="Pagina Inicial"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<style>
+		button img {
+			padding-bottom: 5px;
+		}
+	</style>
+	<div self="@define(content)" width="100%" height="100%" apply="${dashboardComposer}">
+		<borderlayout width="100%" sclass="borderDash">
+			<center>
+				<hbox width="100%" height="100%" align="center" pack="center">
+					<label value="Bem-Vindo ao EZ-Rides!" style="color: green; font-size: 30px;"/>
+				</hbox>
+			</center>
+			<east width="200px" if="${c:isLogged()}">
+				<vbox hflex="1">
+					<hbox hflex="1" pack="center">
+						<label value="Convide seus amigos" style="font-size: 17px; color: #008000;"/>
+					</hbox>
+					<textbox id="fldInvite" hflex="1" value="@{controller.inviteEmail}"/>
+					<button hflex="1" zclass="btn btn-block btn-success" label="Convidar" onClick='controller.doAction("sendInviteEmail")'/>
+				</vbox>
+			</east>
+		</borderlayout>
+		
+	</div>
+</zk>

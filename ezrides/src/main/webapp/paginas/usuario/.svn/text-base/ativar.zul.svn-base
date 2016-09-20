@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Ativação"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk xmlns:h="native">
+	<div self="@define(content)">
+		<vbox width="100%" align="center" apply="${activationComposer}">
+			<groupbox sclass="frmGroupbox" width="1000px" style="overflow: auto;">
+				<caption sclass="myCaption" label="Ativação de Cadastro"/>
+				<vbox width="100%" align="center">
+					<div id="message" visible="true">
+						<vbox>
+							<label value='${c:getSystemProperties("user_activate_page_message1")}' style="font-size: 15px;"/>
+							<label value='${c:getSystemProperties("user_activate_page_message2")}' style="font-size: 15px;"/>
+							<separator height="30px"/>
+							<a label='${c:getSystemProperties("user_activate_page_link")}' href="/paginas/login.zul" style="font-size: 15px;"/>
+						</vbox>
+					</div>
+				</vbox>
+			</groupbox>
+		</vbox>
+	</div>
+</zk>

@@ -1,0 +1,50 @@
+<?page title="Lista de Denúncias"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/paginas/template/template.zul"?>
+<zk>
+	<div self="@define(content)">
+		<hbox width="100%" height="100%" pack="center"
+			apply="${viewAbusesComposer}">
+			<vbox width="100%" align="center">
+				<div align="left">
+				<include src="/paginas/template/topPages.zul" pageTitle="Denúncias" backHref="/paginas/administrador/"/>
+				<listbox id="abusesList"
+					model="@{controller.listEntity}"
+					selectedItem="@{controller.selectedEntity}" hflex="min"
+					onAfterRender='self.clearSelection();' mold="paging">
+					<listhead>
+						<listheader label="Usuário" width="200px" />
+						<listheader label="Rota" width="200px" />
+						<listheader label="Data de Denúncia" width="150px" align="center" />
+						<listheader label="Opções" width="150px" align="center" />
+					</listhead>
+					<listitem self="@{each=abuse}" value="@{abuse}" onDoubleClick="controller.callVisualizedWindow()">
+						<listcell label="@{abuse.route.user}" />
+						<listcell label="@{abuse.route.name}" />
+						<listcell label="@{abuse.abuseDate}" />
+						<listcell>
+							<button sclass="btn btn-success reduced" image="/imagens/lupa_20X20.png" width="30px" tooltiptext='${c:getSystemProperties("viualize_route_tooltiptext")}'>
+								<attribute name="onClick">
+									controller.setSelectedEntity(self.getParent().getParent().getValue());
+									controller.viewRoute();
+								</attribute>
+							</button>
+							<button sclass="btn btn-success reduced" image="/imagens/Ok-icon24x24.png" onClick="" width="30px" tooltiptext='${c:getSystemProperties("remove_abuse_tooltiptext")}'>
+								<attribute name="onClick">
+									controller.setSelectedEntity(self.getParent().getParent().getValue());
+									controller.showDeactivateConfirmation();
+								</attribute>
+							</button>
+							<button sclass="btn btn-success reduced" image="/imagens/Close-2-icon24x24.png" onClick="" width="30px" tooltiptext='${c:getSystemProperties("remove_route_tooltiptext")}'>
+								<attribute name="onClick">
+									controller.setSelectedEntity(self.getParent().getParent().getValue());
+									controller.showDeactivationRouteConfirmation();
+								</attribute>
+							</button>
+						</listcell>
+					</listitem>
+				</listbox>
+				</div>
+			</vbox>
+		</hbox>
+	</div>
+</zk>

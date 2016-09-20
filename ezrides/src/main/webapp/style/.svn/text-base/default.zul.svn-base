@@ -1,0 +1,461 @@
+<zk>
+	<zscript>
+		String themecolor = "#54a954";
+		String fontcolor = "#02735f";
+		String fontcolorListbox = "#FFFFFF";
+		String bordercolor = "#51b11d";
+		String lineheight = "65px";
+		String lineHeightSidebar = "26px";
+	</zscript>
+	<style><![CDATA[	
+	/*Propriedades Gerais do Textbox*/       
+	.z-textbox, .z-longbox, .z-chosenbox {
+		border-color: ${c:getProperty("bordercolor")}; 
+		border-radius: 4px;
+	}
+	
+	.z-textbox[readonly], .z-decimalbox[readonly], .z-intbox[readonly], .z-longbox[readonly], .z-doublebox[readonly] {
+		border-color: ${c:getProperty("bordercolor")}; 
+	}
+	
+	/*Propriedades Gerais do Listbox*/  
+	div.z-listbox {
+		border: 1px solid ${c:getProperty("bordercolor")};
+	}
+	
+	div.z-listbox-header tr.z-listhead  {
+		background: transparent repeat-x 0 0;
+		background-color: ${c:getProperty("headercolorlistbox")};
+	}
+	
+	.z-auxhead th:first-child {
+		background: white;
+	}
+	
+	.z-auxheader {
+		border-color: #FFFFFF;
+	}
+	
+	.z-listbox-header table th{
+		background: linear-gradient(to bottom, #54A954 0%, #408140 100%);
+		border-left: 1px solid #FFFFFF;
+		border-bottom: 1px solid #FFFFFF;
+	}
+	
+	.z-listbox-body {
+		border-color: #FFFFFF;
+	}
+	
+	.z-listbox-paging-bottom{
+		border-top: 1px solid #FFFFFF;
+	}
+	
+	.z-listheader-content{
+		color: ${c:getProperty("fontcolorlistbox")};
+	}
+	
+	.z-listhead {
+		border-color: #FFFFFF;
+	}
+	
+	/*Propriedades Gerais do Listbox - Paging*/  
+	.z-paging-btn .z-paging-first, .z-paging-btn .z-paging-prev,
+	.z-paging-btn .z-paging-next, .z-paging-btn .z-paging-last{
+		background-image: url("/ezrides/imagens/componentes/paging-listbox.png");
+	}
+	
+	div.z-listbox-header tr.z-auxhead{
+		background-color: ${c:getProperty("auxheadercolorlistbox")};
+	}
+	
+	/*Propriedades Gerais do Groupbox*/  	
+	.z-groupbox.frmGroupbox .z-groupbox-header .z-caption-content,
+	.z-groupbox.frmGroupbox .z-groupbox-title-content {
+		display: -moz-inline-box;
+		display: inline-block;
+		background-color: #FFFFFF;
+		font-size: 30px;
+		font-family: arial, helvetica, serif;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+	
+	.z-groupbox.frmGroupbox>.z-groupbox-header{
+		position: relative;
+		top: 12px;
+		height: 37px;
+		border: 1px solid black;
+		border-bottom: none;
+		-webkit-border-top-left-radius: 8px;
+		-webkit-border-top-right-radius: 8px;
+		-moz-border-radius-topleft: 8px;
+		-moz-border-radius-topright: 8px;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+	
+	.z-groupbox.frmGroupbox .z-groupbox-content {
+		overflow: hidden;
+		padding: 5px;
+		border: 1px solid black;
+		border-top: none;
+		-webkit-border-bottom-right-radius: 8px;
+		-webkit-border-bottom-left-radius: 8px;
+		-moz-border-radius-bottomright: 8px;
+		-moz-border-radius-bottomleft: 8px;
+		border-bottom-right-radius: 8px;
+		border-bottom-left-radius: 8px;
+	}
+	
+	.visualizar.z-groupbox .z-groupbox-content {
+		border: 1px solid #2DA71C;
+		-webkit-border-top-right-radius: 8px;
+		-webkit-border-top-left-radius: 8px;
+		-moz-border-radius-topright: 8px;
+		-moz-border-radius-topleft: 8px;
+		border-top-right-radius: 8px;
+		border-top-left-radius: 8px;
+	}
+	
+	.z-groupbox.frmGroupbox .z-label,
+	.z-groupbox.frmGroupbox .z-radio-content{
+		color: black;
+	}
+	
+	/*Propriedades Gerais do Combobox*/ 
+	.z-combobox-input, .z-combobox-button, .z-combobox-button:hover,
+	.z-datebox-input, .z-datebox-button, .z-datebox-button:hover{
+		border: 1px solid ${c:getProperty("bordercolor")};
+	}
+	
+	.z-combobox-input,
+	.z-datebox-input {
+		border-right: 0;
+	}
+	
+	/*Propriedades Gerais do Datebox*/ 
+	.z-datebox-inp {
+		font-weight: normal;
+		background: #FFFFFF;
+		border: 1px solid ${c:getProperty("bordercolor")};
+		//border-top-color: #3f8419;
+		border-right: 0;
+		padding: 2px;
+		border-radius: 2px 0 0 2px;
+		-moz-border-radius: 2px 0 0 2px;
+		-webkit-border-radius: 2px 0 0 2px;
+		height: 15px;
+		outline: none;
+	}
+	
+	.z-datebox-focus .z-datebox-inp {
+		border: 1px solid ${c:getProperty("bordercolor")};
+		//border-top-color: #3f8419;
+		border-right: none;
+	}
+	
+	.z-datebox .z-datebox-btn{
+		border: 1px solid ${c:getProperty("bordercolor")};
+	}
+	
+	.z-datebox-focus .z-datebox-btn-clk, .z-datebox .z-datebox-btn-clk {
+		margin-left: -1px;
+	}
+	
+	.z-datebox-focus .z-datebox-btn-clk, .z-datebox .z-datebox-btn-clk {
+		background-position: -38px -1px;
+		border: 1px solid #94B9DA;
+	}
+	
+	.z-datebox-focus .z-datebox-btn {
+		background-position: -57px -1px;
+		border: 1px solid #D5EAFD;
+		border-top-color: #94B9DA;
+		border-left: 0;
+	}
+	
+	.z-datebox-focus .z-datebox-btn-over {
+		background-position: -19px -1px;
+		border: 1px solid #94B9DA;
+	}
+	
+	/*Propriedades Gerais do Button*/   
+<!-- 	.z-button .z-button-cr, .z-button .z-button-cl,  -->
+<!-- 	.z-button .z-button-bl, .z-button .z-button-bm, -->
+<!-- 	.z-button .z-button-br, .z-button .z-button-tl, -->
+<!-- 	.z-button .z-button-tm, .z-button .z-button-tr { -->
+<!-- 	    background-image: none; -->
+<!-- 	} -->
+	
+	.z-button.noStyle{
+		background-image: none;
+		border: none;
+		padding: 0px 8px;
+		background : transparent no-repeat 0 0 ;
+		color: #FFFFFF;
+		font-size: 15px;
+	}
+	
+	.z-button .z-button-cm {
+	    background : transparent no-repeat 0 0 ;
+		color: #FFFFFF;
+		font-size: 15px;
+	}
+	
+	.z-button:hover, .z-button:focus {
+		background : transparent no-repeat 0 0 ;		
+	}
+	
+	.btn.btn-success.reduced, .btn.btn-success.reduced-image {
+		padding: 0px 0px;
+	}
+	
+	/*Propriedades do cabeçalho*/              
+	.header {
+	    background-color: ${c:getProperty("themecolor")};
+	    border-bottom: 0px;
+	    padding-left: 13px;
+	    padding-right: 13px;
+	}
+	.header-title1 {
+	    color: ${c:getProperty("headertitlecolor")};
+	    font-size: 35px;
+	    font-weight: bold;
+	    float: left;
+	    line-height: ${lineheight};
+	}
+	.oeste {
+		background-color: ${c:getProperty("themecolor")};
+		border: none;
+		line-height: ${lineheight};
+	}
+	
+	.leste {
+		background-color: ${c:getProperty("themecolor")};
+		border: none;
+	}
+	
+	.centro {
+		background-color: ${c:getProperty("themecolor")};
+		border: none;
+		text-align: center;
+		line-height: ${lineheight};
+	}
+	
+	.z-borderlayout .z-east.leste a{
+		color: white;
+	}
+	
+	.z-borderlayout .z-east.leste a:hover{
+		color: #DBDBDB;
+	}
+	
+	/*Propriedades do centro*/   
+	.center {
+	    padding-top: 15px;
+		padding-bottom: 0px;
+	}
+	
+	/*Propriedades Borderlayout do Perfil*/ 
+	.profileBorderlayout {
+		border: none;
+	}
+	
+	.profileWest {
+		border: none;
+	}
+	
+	.profileCenter {
+		border: none;
+		padding-bottom: 12px;
+	}
+	
+	.profileEast {
+		border: none;
+	}
+	
+	.profileBorderlayout tr{
+		height: 15px;
+	}
+	
+	.profileBorderlayout tr.z-vbox-sep{
+		height: 0px;
+	}
+	
+	/*Propriedades Borderlayout da Tela Pesquisa de Usuarios*/ 
+	.pesqUsuario {
+		border: none;
+	}
+	
+	.pesqUsuario .z-west {
+		border: none;
+	}
+	
+	.pesqUsuario .z-center {
+		border: none;
+		padding-left: 12px;
+	}
+	
+	.pesqUsuario .z-east {
+		border: none;
+	}
+	
+	/*Propriedades Borderlayout da Dashboard*/ 
+	.borderDash {
+		border: none;
+	}
+	
+	.borderDash .z-west {
+		border: none;
+	}
+	
+	.borderDash .z-center {
+		border: none;
+		padding-left: 12px;
+	}
+	
+	.borderDash .z-east {
+		border-left-color: ${c:getProperty("sidebarbordercolor")};
+		border-right-width: 0px;
+		border-top-width: 0px;
+		border-bottom-width: 0px;
+		padding-left: 13px;
+	}
+	
+	/*Propriedades do rodapé*/   
+	.footer {
+	    background-color: ${c:getProperty("themecolor")};
+	    border-top : 0px solid gray;
+	    color: ${c:getProperty("footertextcolor")};
+	    text-align: center;
+	}
+	
+	/*Propriedades da Side bar*/ 
+	.sidebar {
+		border-right-color: ${c:getProperty("sidebarbordercolor")};
+		border-left-width: 0px;
+		border-top-width: 0px;
+		border-bottom-width: 0px;
+		padding-top: 13px;
+		padding-bottom: 13px;
+		
+		padding-right: 10px;
+		color: #168910;
+	}	
+	div.itens {
+		line-height: ${c:getProperty("sidebarlineheight")};
+	}
+	.icones {
+		float: left;
+	}
+	.menuSidebar a:link, 
+	.menuSidebar a:visited, 
+	.menuSidebar a:active {
+		text-decoration: none;
+		color: ${c:getProperty("sidebarlinkcolor")};
+	}
+	.menuSidebar a:hover {
+		text-decoration: none;
+		color: ${c:getProperty("sidebarlinkhovercolor")};
+	}   
+	
+	/*Títulos*/ 
+	.titulo1{
+		font-size: 16px;
+		color: black;
+		font-weight: bold;
+	}
+	
+	.titulo2{
+		color: black;
+		font-weight: bold;
+	}
+	
+	.tituloMenor{
+		font-size: 9px;
+		color: black;
+	}
+	
+	.heavy{
+		font-weight: bold;
+		font-size: 13px;
+	}
+	
+	/*Propriedade Grid*/ 
+	.nostyle.z-grid {
+		border: none;
+	}
+	
+	.nostyle tr.z-grid-odd td.z-row-inner,
+	.nostyle tr.z-grid-odd .z-cell {
+		border-left: 1px solid transparent;
+		background-color: #FFFFFF;
+		border-top: 1px solid #FFFFFF;
+		border-bottom: 1px solid #FFFFFF;
+		border-left: 1px solid #FFF;
+	}
+	
+	.nostyle td.z-row-inner,{
+		border-left: 1px solid transparent;
+		background-color: #FFFFFF;
+		border-top: 1px solid #FFFFFF;
+		border-bottom: 1px solid #FFFFFF;
+		border-left: 1px solid #FFF;
+	}
+	
+	.nostyle tr.z-row-over > td.z-row-inner {
+		border-top: 1px solid #FFFFFF;
+		border-bottom: 1px solid #FFFFFF;
+	}
+	
+	.nostyle tr.z-row-over > td.z-row-inner, tr.z-row-over > .z-cell {
+		background-image: none;
+	}
+	
+	div.z-grid-pgi-b {
+		border: none;
+	}
+	
+	/*Propriedades Notification*/ 
+	div.z-notification.z-notification-error.z-notification-ref .z-notification-cl,
+	div.z-notification.z-notification-error.z-notification-ref .z-notification-cnt {
+		width: 155px;
+		height: 50px;
+	}
+	
+	div.z-notification.z-notification-error .z-notification-cl,
+	div.z-notification.z-notification-error .z-notification-cnt {
+		width: 400px;
+		height: 140px;
+	}
+	
+	.z-notification .z-notification-cnt {
+		overflow: auto;
+	}
+	
+	.z-notification .z-notification-close {
+		top: 5px;
+		right: 5px;
+	}
+	
+	/*Propriedades Checkbox e Radiobutton*/ 
+	.z-radio label,
+	.z-checkbox label {
+		padding-left: 5px;
+		padding-right: 10px;
+	}
+	
+	/*Propriedades Hbox*/
+	table.z-hbox.allScreen table {
+		width: 100%;
+	}
+	
+	/*Propriedades GMaps*/
+	 #map_canvas {
+	        margin: 0;
+	        padding: 0;
+	        height: 100%;
+	      }
+	
+	]]></style>
+</zk>

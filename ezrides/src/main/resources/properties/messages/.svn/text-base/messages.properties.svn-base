@@ -1,0 +1,63 @@
+#Mesagens genéricas de validação
+notnull_false=Campo vazio\!
+min_false=Campo n\u00E3o pode ser menor que 
+max_false=Campo n\u00E3o pode ser maior que 
+future_false=Data n\u00E3o pode ser futura\!
+past_false=Data n\u00E3o pode ser passada\!
+email_false=Email Inv\u00E1lido\!
+
+#Mensagens do Usuário
+user_update_true=Usu\u00E1rio alterado com sucesso\!
+#user_save_true=Usu\u00E1rio cadastrado com sucesso\!
+user_deactivate_true=Usu\u00E1rio desativado com sucesso\!
+user_updatepassword_true=Senha alterada com sucesso\!
+user_senha_equals_false=Senhas devem ser iguais\!
+user_email_equals_false=Emails devem ser iguais\!
+user_email_exists_true=Email j\u00E1 cadastrado\!
+user_senhaatual_equals_false=Senha atual inv\u00E1lida\!
+user_newpass_length_false=Senha deve ter no m\u00EDnimo 6 caract\u00E9res\!
+user_cnewpass_equals_false=Confirma\u00E7\u00E3o inv\u00E1lida\!
+user_selectedentity_false= Nenhum usu\u00E1rio selecionado\!
+user_inviteuser_true=Convite enviado com sucesso\!
+user_invite_notnull_false=Voc\u00EA deve preencher o email para convidar algu\u00E9m\!
+user_invite_exists_true=Email do convite j\u00E1 cadastrado no sistema\!
+
+#Mensagens de Categoria de rotas
+routecategory_update_true=Categoria alterada com sucesso\!
+routecategory_save_true=Categoria cadastrada com sucesso\!
+routecategory_deactivate_true=Categoria desativada com sucesso\!
+routecategory_name_exists_true=Nome j\u00E1 cadastrado\!
+routecategory_name_unique_false=Nome j\u00E1 cadastrado\!
+routecategory_selectedentity_false= Nenhuma categoria selecionada\!
+
+#Mensagens de Recuperação de Senha
+user_recoveryemail_exists_false=Email n\u00E3o encontrado no sistema\!
+user_recoverypass_length_false=Senha deve ter no m\u00EDnimo 6 caract\u00E9res\!
+user_crecoverypass_equals_false=Confirma\u00E7\u00E3o inv\u00E1lida\!
+
+#Mensagens de Amizade
+friendship_save_true=Solicita\u00E7\u00E3o enviada com sucesso\!
+friendship_delete_true=Amizade exclu\u00EDda com sucesso\!
+friendship_activefriend_true=Amizade aceita\!
+friendship_isfriend_true=Amizade j\u00E1 existente\!
+
+#Mensagens de Rotas
+route_update_true=Rota alterada com sucesso\!
+route_save_true=Rota cadastrada com sucesso\!
+route_selectedentity_false= Nenhuma rota selecionada\!
+route_deactivate_true=Rota desativada com sucesso\!
+route_activate_true=Rota ativada com sucesso\!
+route_isactivated_true=Rota j\u00E1 est\u00E1 ativada\!
+route_isdeactivated_true=Rota j\u00E1 est\u00E1 desativada\!
+
+#Mensagens de Mensagens Pessoais
+messages_sendmessages_true=Mensagem(ens) enviada(s) com sucesso\!
+messages_deactivatesentmessage_true=Mensagem exclu\u00EDda com sucesso\!
+messages_destiny_notnull_false=Preencha os destinat\u00E1rios\!
+messages_bodymessage_notnull_false=Preencha a mensagem\!
+sentmessages_selectedentity_false= Nenhuma mensagem selecionada\!
+
+#Mensagens de Denúncia
+abuse_save_true=Den\u00FAncia efetuada com sucesso\!
+abuse_deactivate_true=Den\u00FAncia retirada com sucesso\!
+abuse_deactivateroute_true=Rota desativada com sucesso\!
